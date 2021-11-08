@@ -1,6 +1,17 @@
 import React from 'react';
 
+/* function saveEmail(email) {
+  localStorage.setItem('Email', email);
+} */
+
 function loginPage() {
+  /* function handleEmail({ target }) {
+    setEmail({
+      ...email,
+      [target.name]: target.value,
+    });
+  } */
+
   return (
     <main>
       <label htmlFor="input-email">
@@ -9,6 +20,7 @@ function loginPage() {
           name="input-email"
           placeholder="Digite seu email"
           data-testid="email-input"
+          // onChange={ (event) => handleEmail(event) }
         />
       </label>
       <label htmlFor="input-password">
@@ -20,7 +32,10 @@ function loginPage() {
           data-testid="password-input"
         />
       </label>
-      <button data-testid="login-submit-btn" type="button">
+      <button
+        data-testid="login-submit-btn"
+        type="button"
+      >
         Entrar
       </button>
     </main>
