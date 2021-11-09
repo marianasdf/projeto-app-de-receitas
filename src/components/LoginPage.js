@@ -1,26 +1,51 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import RecipesContext from '../context/RecipesContext';
 
-/* function saveEmail(email) {
-  localStorage.setItem('Email', email);
-} */
+function LoginPage({ history }) {
+  const { email, setEmail, disable,
+    setDisable, password, setPassword } = useContext(RecipesContext);
 
-function loginPage() {
-  /* function handleEmail({ target }) {
-    setEmail({
-      ...email,
-      [target.name]: target.value,
-    });
-  } */
+  function loginVerification() {
+    const minLengthPassword = 6;
+    const emailSplit = email.split('');
+    if (emailSplit
+      .includes('@') && emailSplit[emailSplit.length - 1] !== '@' && emailSplit
+      .includes('.') && emailSplit[emailSplit.length - 1] !== '.'
+      && password.length + 1 > minLengthPassword) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  }
+
+  function handleEmail({ target }) {
+    setEmail(target.value);
+  }
+
+  function handlePassword({ target }) {
+    setPassword(target.value);
+    loginVerification();
+  }
+
+  function handleClick() {
+    localStorage.setItem('user', JSON.stringify({
+      email,
+    }));
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    history.push('/comidas');
+  }
 
   return (
     <main>
       <label htmlFor="input-email">
         Email:
         <input
-          name="input-email"
+          name="email"
           placeholder="Digite seu email"
           data-testid="email-input"
-          // onChange={ (event) => handleEmail(event) }
+          onChange={ handleEmail }
         />
       </label>
       <label htmlFor="input-password">
@@ -30,11 +55,14 @@ function loginPage() {
           type="password"
           placeholder="Digite sua senha"
           data-testid="password-input"
+          onChange={ handlePassword }
         />
       </label>
       <button
         data-testid="login-submit-btn"
         type="button"
+        disabled={ disable }
+        onClick={ handleClick }
       >
         Entrar
       </button>
@@ -42,4 +70,10 @@ function loginPage() {
   );
 }
 
-export default loginPage;
+LoginPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default LoginPage;
