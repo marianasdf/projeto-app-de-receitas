@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CategoryFilter from '../components/CategoryFilter';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
@@ -54,6 +55,7 @@ function Meals() {
           <RecipeCard page="meals" index={ index } recipe={ recipe } />
         </Link>
       )) }
+      <Footer />
     </>
   );
 }
