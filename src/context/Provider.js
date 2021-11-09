@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function Provider({ children }) {
-  const conxtValue = {
+  const [recipes, setRecipes] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
+  const conxtValue = {
+    recipes,
+    setRecipes,
+    categories,
+    setCategories,
+    selectedCategory,
+    setSelectedCategory,
   };
 
   return (

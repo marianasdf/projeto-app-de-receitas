@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CategoryFilter from '../components/CategoryFilter';
 import Header from '../components/Header';
-import { fetchCategories, fetchRecipes } from '../services';
+import RecipeCard from '../components/RecipeCard';
+import RecipesContext from '../context/RecipesContext';
+import { fetchByCategory, fetchCategories, fetchRecipes } from '../services';
 
 function Meals() {
-  // passar useStates para o provider
-  const [recipes, setRecipes] = useState([]);
-  const [categories, setCategories] = useState([]);
-  // criar um state para categoria selecionada
+  const {
+    recipes,
+    setRecipes,
+    setCategories,
+    selectedCategory,
+  } = useContext(RecipesContext);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -16,8 +21,6 @@ function Meals() {
       setRecipes(meals.slice(0, MAX_VALUE));
     };
 
-    getRecipes();
-
     const getCategories = async () => {
       const MAX_VALUE = 5;
       const { meals } = await fetchCategories('meals');
@@ -25,64 +28,30 @@ function Meals() {
     };
 
     getCategories();
-  }, []);
+
+    const getByCategory = async () => {
+      const MAX_VALUE = 12;
+      const { meals } = await fetchByCategory('meals', selectedCategory);
+      setRecipes(meals.slice(0, MAX_VALUE));
+    };
+
+    if (selectedCategory === 'All') {
+      getRecipes();
+    } else {
+      getByCategory();
+    }
+  }, [setRecipes, setCategories, selectedCategory]);
 
   return (
     <>
       <Header title="Comidas" buttonSearch />
-      {/* componetizar para categoryFilter */}
-      <div
-        className="category-button"
-        data-testid="All-category-filter"
-      >
-        <label
-          htmlFor="all"
-        >
-          <input
-            type="checkbox"
-            name="category"
-            id="all"
-            value="All"
-            // onClick={ criar handle para tratar o valor de pesquisa }
-          />
-          <span>All</span>
-        </label>
-      </div>
-      { categories.map(({ strCategory }, index) => (
-        <div
-          key={ index }
-          data-testid={ `${strCategory}-category-filter` }
-        >
-          <label
-            htmlFor={ `${index}-option` }
-          >
-            <input
-              type="checkbox"
-              name="category"
-              id={ `${index}-option` }
-              value={ strCategory }
-              // onClick={ criar handle para tratar o valor de pesquisa }
-            />
-            <span>{ strCategory }</span>
-          </label>
-        </div>
-      ))}
+      <CategoryFilter />
       { recipes.map((recipe, index) => (
         <Link
           key={ index }
           to={ `/comidas/${recipe.idMeal}` }
         >
-          {/* COMPONETIZAR ESSE CARD */}
-          <div data-testid={ `${index}-recipe-card` }>
-            <img
-              src={ recipe.strMealThumb }
-              alt={ recipe.strMeal }
-              data-testid={ `${index}-card-img` }
-            />
-            <h3 data-testid={ `${index}-card-name` }>
-              { recipe.strMeal }
-            </h3>
-          </div>
+          <RecipeCard page="meals" index={ index } recipe={ recipe } />
         </Link>
       )) }
     </>

@@ -17,3 +17,14 @@ export const fetchCategories = async (type) => {
 
   return data;
 };
+
+export const fetchByCategory = async (type, category) => {
+  const MEALS_BY_CATEGORY = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
+  const DRINKS_BY_CATEGORY = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
+
+  const response = await fetch(type === 'meals'
+    ? `${MEALS_BY_CATEGORY}${category}` : `${DRINKS_BY_CATEGORY}${category}`);
+  const data = response.json();
+
+  return data;
+};
