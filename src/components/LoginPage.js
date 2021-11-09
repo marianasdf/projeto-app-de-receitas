@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
-function LoginPage() {
+function LoginPage({ history }) {
   const { email, setEmail, disable,
     setDisable, password, setPassword } = useContext(RecipesContext);
 
@@ -28,7 +28,10 @@ function LoginPage() {
   }
 
   function handleClick() {
-    return localStorage.setItem('user', `{ email: ${email}}`);
+    localStorage.setItem('user', JSON.stringify({
+      email,
+    }));
+    history.push('/comidas');
   }
 
   return (
