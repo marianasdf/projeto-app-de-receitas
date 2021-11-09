@@ -9,6 +9,7 @@ function App() {
   return (
     <RecipesProvider>
       <div className="meals">
+        <h2>Projeto em grupo</h2>
         <span className="logo">TRYBE</span>
         <BrowserRouter>
           <Routes />
