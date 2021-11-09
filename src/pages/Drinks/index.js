@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CategoryFilter from '../components/CategoryFilter';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import RecipeCard from '../components/RecipeCard';
-import RecipesContext from '../context/RecipesContext';
-import { fetchByCategory, fetchCategories, fetchRecipes } from '../services';
+import CategoryFilter from '../../components/CategoryFilter';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import RecipeCard from '../../components/RecipeCard';
+import RecipesContext from '../../context/RecipesContext';
+import { fetchByCategory, fetchCategories, fetchRecipes } from '../../services';
 
 function Drinks() {
   const {

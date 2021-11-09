@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import RecipesContext from '../context/RecipesContext';
+import RecipesContext from '../../context/RecipesContext';
 
 function CategoryFilter() {
   const {
