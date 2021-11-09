@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import RecipesContext from '../context/RecipesContext';
+import RecipesContext from '../../context/RecipesContext';
 
 function LoginPage({ history }) {
   const { email, setEmail, disable,

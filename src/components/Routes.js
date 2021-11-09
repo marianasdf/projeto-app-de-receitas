@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LoginPage from './LoginPage';
+import LoginPage from '../pages/Login';
 import Drinks from '../pages/Drinks';
 import DrinksDetails from '../pages/DrinksDetails';
 import DrinksInProgress from '../pages/DrinksInProgress';
