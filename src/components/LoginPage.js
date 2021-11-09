@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
 
 function LoginPage({ history }) {
@@ -11,7 +12,7 @@ function LoginPage({ history }) {
     if (emailSplit
       .includes('@') && emailSplit[emailSplit.length - 1] !== '@' && emailSplit
       .includes('.') && emailSplit[emailSplit.length - 1] !== '.'
-      && password.length + 1 >= minLengthPassword) {
+      && password.length + 1 > minLengthPassword) {
       setDisable(false);
     } else {
       setDisable(true);
@@ -31,6 +32,8 @@ function LoginPage({ history }) {
     localStorage.setItem('user', JSON.stringify({
       email,
     }));
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
     history.push('/comidas');
   }
 
@@ -66,5 +69,11 @@ function LoginPage({ history }) {
     </main>
   );
 }
+
+LoginPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default LoginPage;
