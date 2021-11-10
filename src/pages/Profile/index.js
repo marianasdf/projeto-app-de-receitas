@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 function Profile({ history }) {
   const [localEmail, setLocalEmail] = useState('');
@@ -35,6 +36,7 @@ function Profile({ history }) {
       >
         Sair
       </button>
+      <Footer />
     </>
   );
 }
