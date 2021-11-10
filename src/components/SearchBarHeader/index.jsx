@@ -1,0 +1,70 @@
+import React, { useContext, useState } from 'react';
+import RecipesContext from '../../context/RecipesContext';
+
+function SearchBarHeader() {
+  const [searchInput, setSearchInput] = useState('');
+  const [searchRadio, setSearchRadio] = useState('');
+  const { fetchSearchBar } = useContext(RecipesContext);
+
+  const handleChange = (value) => {
+    setSearchRadio(value);
+  };
+  console.log(searchRadio);
+
+  const handleClick = async () => {
+    const result = await fetchSearchBar(searchRadio, searchInput);
+    console.log(result);
+  };
+
+  return (
+    <form>
+      <input
+        type="text"
+        data-testid="search-input"
+        name={ searchInput }
+        onChange={ (event) => setSearchInput(event.target.value) }
+      />
+      <label htmlFor="ingredient">
+        <input
+          id="ingredient"
+          type="radio"
+          name={ searchRadio }
+          data-testid="ingredient-search-radio"
+          value="ingredient"
+          onChange={ ({ target: { value } }) => handleChange(value) }
+        />
+        Ingrediente
+      </label>
+      <label htmlFor="name">
+        <input
+          id="name"
+          type="radio"
+          name={ searchRadio }
+          data-testid="name-search-radio"
+          value="name"
+          onChange={ ({ target: { value } }) => handleChange(value) }
+        />
+        Nome
+      </label>
+      <label htmlFor="first-letter">
+        <input
+          id="first-letter"
+          type="radio"
+          name={ searchRadio }
+          data-testid="first-letter-search-radio"
+          value="first-letter"
+          onChange={ ({ target: { value } }) => handleChange(value) }
+        />
+        Primeira Letra
+      </label>
+      <button
+        type="button"
+        data-testid="exec-search-btn"
+        onClick={ handleClick }
+      >
+        Buscar
+      </button>
+    </form>
+  );
+}
+export default SearchBarHeader;
