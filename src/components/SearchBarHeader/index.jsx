@@ -15,13 +15,18 @@ function SearchBarHeader() {
 
   const handleClick = async () => {
     const result = await fetchSearchBar(searchRadio, searchInput, pathUrl);
-    if (pathUrl === '/comidas' && result.meals.length === 1) {
-      history.push(`/comidas/${result.meals[0].idMeal}`);
+    if (result.meals === null || result.drinks === null) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    } else {
+      if (pathUrl === '/comidas' && result.meals.length === 1) {
+        history.push(`/comidas/${result.meals[0].idMeal}`);
+      }
+
+      if (pathUrl === '/bebidas' && result.drinks.length === 1) {
+        history.push(`/bebidas/${result.drinks[0].idDrink}`);
+      }
+      console.log(result);
     }
-    if (pathUrl === '/bebidas' && result.drinks.length === 1) {
-      history.push(`/bebidas/${result.drinks[0].idDrink}`);
-    }
-    console.log(result);
   };
 
   return (
