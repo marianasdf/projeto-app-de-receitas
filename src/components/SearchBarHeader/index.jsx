@@ -1,18 +1,20 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../../context/RecipesContext';
 
 function SearchBarHeader() {
   const [searchInput, setSearchInput] = useState('');
   const [searchRadio, setSearchRadio] = useState('');
   const { fetchSearchBar } = useContext(RecipesContext);
+  const history = useHistory();
+  const pathUrl = history.location.pathname;
 
   const handleChange = (value) => {
     setSearchRadio(value);
   };
-  console.log(searchRadio);
 
   const handleClick = async () => {
-    const result = await fetchSearchBar(searchRadio, searchInput);
+    const result = await fetchSearchBar(searchRadio, searchInput, pathUrl);
     console.log(result);
   };
 
