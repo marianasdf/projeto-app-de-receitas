@@ -14,52 +14,26 @@ function RecipesProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   async function fetchSearchBar(inputRadio, inputText, path) {
-    if (path === '/comidas') {
-      if (inputRadio === 'ingredient') {
-        const fetchIngredient = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${inputText}`);
-        const resultIngredient = await fetchIngredient.json();
-        return resultIngredient;
-      }
-
-      if (inputRadio === 'name') {
-        const fetchName = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`);
-        const resultName = await fetchName.json();
-        return resultName;
-      }
-
-      if (inputRadio === 'first-letter' && inputText.length === 1) {
-        const fetchFirstLetter = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputText}`);
-        const resultFirstLetter = await fetchFirstLetter.json();
-        return resultFirstLetter;
-      }
-
-      if (inputRadio === 'first-letter' && inputText.length > 1) {
-        global.alert('Sua busca deve conter somente 1 (um) caracter');
-      }
+    if (inputRadio === 'ingredient') {
+      const fetchIngredient = await (path === '/comidas' ? fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${inputText}`) : fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${inputText}`));
+      const resultIngredient = await fetchIngredient.json();
+      return resultIngredient;
     }
 
-    if (path === '/bebidas') {
-      if (inputRadio === 'ingredient') {
-        const fetchIngredient = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${inputText}`);
-        const resultIngredient = await fetchIngredient.json();
-        return resultIngredient;
-      }
+    if (inputRadio === 'name') {
+      const fetchName = await (path === '/comidas' ? fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`) : fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText}`));
+      const resultName = await fetchName.json();
+      return resultName;
+    }
 
-      if (inputRadio === 'name') {
-        const fetchName = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText}`);
-        const resultName = await fetchName.json();
-        return resultName;
-      }
+    if (inputRadio === 'first-letter' && inputText.length === 1) {
+      const fetchFirstLetter = await (path === '/comidas' ? fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputText}`) : fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputText}`));
+      const resultFirstLetter = await fetchFirstLetter.json();
+      return resultFirstLetter;
+    }
 
-      if (inputRadio === 'first-letter' && inputText.length === 1) {
-        const fetchFirstLetter = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputText}`);
-        const resultFirstLetter = await fetchFirstLetter.json();
-        return resultFirstLetter;
-      }
-
-      if (inputRadio === 'first-letter' && inputText.length > 1) {
-        global.alert('Sua busca deve conter somente 1 (um) caracter');
-      }
+    if (inputRadio === 'first-letter' && inputText.length > 1) {
+      global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
   }
 
