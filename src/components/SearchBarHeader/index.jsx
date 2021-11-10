@@ -25,7 +25,6 @@ function SearchBarHeader() {
       if (pathUrl === '/bebidas' && result.drinks.length === 1) {
         history.push(`/bebidas/${result.drinks[0].idDrink}`);
       }
-      console.log(result);
     }
   };
 
