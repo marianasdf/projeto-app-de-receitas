@@ -28,3 +28,14 @@ export const fetchByCategory = async (type, category) => {
 
   return data;
 };
+
+export const fetchDetails = async (type, id) => {
+  const URL_MEALS = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  const URL_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+
+  const response = await fetch(type === 'meals'
+    ? `${URL_MEALS}${id}` : `${URL_DRINKS}${id}`);
+  const data = response.json();
+
+  return data;
+};
