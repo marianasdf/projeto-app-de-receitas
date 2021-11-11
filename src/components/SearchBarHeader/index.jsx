@@ -5,7 +5,7 @@ import RecipesContext from '../../context/RecipesContext';
 function SearchBarHeader() {
   const [searchInput, setSearchInput] = useState('');
   const [searchRadio, setSearchRadio] = useState('');
-  const { fetchSearchBar } = useContext(RecipesContext);
+  const { fetchSearchBar, setRecipes } = useContext(RecipesContext);
   const history = useHistory();
   const pathUrl = history.location.pathname;
 
@@ -24,6 +24,16 @@ function SearchBarHeader() {
 
       if (pathUrl === '/bebidas' && result.drinks.length === 1) {
         history.push(`/bebidas/${result.drinks[0].idDrink}`);
+      }
+
+      if (pathUrl === '/comidas' && result.meals.length > 1) {
+        const MAX_VALUE = 12;
+        setRecipes(result.meals.slice(0, MAX_VALUE));
+      }
+
+      if (pathUrl === '/bebidas' && result.drinks.length > 1) {
+        const MAX_VALUE = 12;
+        setRecipes(result.drinks.slice(0, MAX_VALUE));
       }
     }
   };
