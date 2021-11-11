@@ -9,7 +9,7 @@ import ExploreDrinks from '../pages/ExploreDrinks';
 import ExploreDrinksByIngredient from '../pages/ExploreDrinksByIngredient';
 import ExploreFoodByIngredient from '../pages/ExploreFoodByIngredient';
 import ExploreLocalOrigin from '../pages/ExploreLocalOrigin';
-import ExploreMeals from '../pages/ExploreMeals';
+import ExploreMeals from '../pages/ExplorerMeals';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import Meals from '../pages/Meals';
 import MealsDetails from '../pages/MealsDetails';
