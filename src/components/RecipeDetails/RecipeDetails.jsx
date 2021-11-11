@@ -16,5 +16,5 @@ export default function RecipeDetails({ recipe }) {
 }
 
 RecipeDetails.propTypes = {
-  recipe: PropTypes.shape({}).isRequired,
+  recipe: PropTypes.shape([]).isRequired,
 };
