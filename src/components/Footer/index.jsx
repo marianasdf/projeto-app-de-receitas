@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import drinkIcon from '../images/drinkIcon.svg';
-import exploreIcon from '../images/exploreIcon.svg';
-import foodIcon from '../images/mealIcon.svg';
+import drinkIcon from '../../images/drinkIcon.svg';
+import exploreIcon from '../../images/exploreIcon.svg';
+import foodIcon from '../../images/mealIcon.svg';
 
 export default function Footer() {
   function handleClick({ target: { name } }) {
