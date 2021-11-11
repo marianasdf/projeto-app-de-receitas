@@ -13,6 +13,7 @@ function SearchBarHeader() {
     setSearchRadio(value);
   };
 
+  // teste
   const handleClick = async () => {
     const result = await fetchSearchBar(searchRadio, searchInput, pathUrl);
     if (result.meals === null || result.drinks === null) {
