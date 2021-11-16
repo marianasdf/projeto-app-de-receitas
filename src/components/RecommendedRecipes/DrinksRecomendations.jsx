@@ -23,7 +23,10 @@ export default function DrinksRecommendations({ recommendations }) {
                   className="recipeIMG"
                 />
                 <div className="recipeNameContainer">
-                  <p className="recipeName" data-testid={ `${index}-recomendation-title` }>
+                  <p
+                    className="recipeName"
+                    data-testid={ `${index}-recomendation-title` }
+                  >
                     {item.strDrink}
                   </p>
                 </div>
