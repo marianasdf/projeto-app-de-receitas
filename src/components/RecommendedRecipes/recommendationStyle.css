@@ -1,0 +1,31 @@
+.recipeCardContainer {
+  max-width: 95vw;
+  overflow: scroll;
+}
+
+.recipeCard {
+  position: relative;
+}
+
+.recipeName {
+  color: white;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.479);
+}
+
+.recipeNameContainer {
+  backdrop-filter: blur(10px);
+  background-color: transparent;
+  height: 20%;
+  position: absolute;
+  text-align: center;
+  top: 80%;
+  width: 100%;
+}
+
+link {
+  text-decoration: none;
+}
+
+.recipeIMG {
+  width: 50vw;
+}
