@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import { fetchRecipes } from '../../services';
 
 function Explore() {
   return (
@@ -25,6 +26,13 @@ function Explore() {
           >
             Explorar Bebidas
           </button>
+        </Link>
+        <Link to="/explorar/origem">
+          <select
+            data-testid="explore-by-area-dropdown"
+          >
+            {/* {fetchRecipes().meals.map(() => {})} */}
+          </select>
         </Link>
       </div>
       <Footer />
