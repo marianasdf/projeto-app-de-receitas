@@ -27,3 +27,10 @@ export const fetchByCategory = async (type, category) => {
 
   return data;
 };
+
+export const fetchRandomRecipe = async () => {
+  const RANDOM_RECIPE = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+  const { result } = await fetch(RANDOM_RECIPE).then((r) => r.json());
+  console.log(result.idDrink);
+  return result.idDrink;
+};

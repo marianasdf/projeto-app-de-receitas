@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchRandomRecipe } from '../../services';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
 function ExploreMeals() {
+  const [idMeal, setIdMeal] = useState('');
+
+  useEffect(() => {
+    (async () => setIdMeal(await fetchRandomRecipe()))();
+  }, []);
+
+  console.log(idMeal);
+
   return (
     <div>
       <Header title="Explorar Comidas" />
@@ -24,7 +33,7 @@ function ExploreMeals() {
             Por Local de Origem
           </button>
         </Link>
-        <Link to="/">
+        <Link to={ `/comidas/:${idMeal}` }>
           <button
             type="button"
             data-testid="explore-surprise"
