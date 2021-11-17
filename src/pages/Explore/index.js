@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { fetchRecipes } from '../../services';
 
 function Explore() {
+  // const [loading, setLoading] = useState(true);
+  const [origens, setOrigens] = useState([]);
+  useEffect(() => {
+    async function returnApi() {
+      const array = [];
+      const mealsOrigens = await fetchRecipes('meals');
+      mealsOrigens.meals.map((origem) => (
+        array.push(origem.strArea)
+      ));
+      const filteredArray = array.filter((item, index) => (
+        array.indexOf(item) === index
+      ));
+      setOrigens(filteredArray);
+    }
+    returnApi();
+  }, []);
+
+  console.log(origens);
+
   return (
     <div>
       <Header title="Explorar" />
@@ -31,7 +50,9 @@ function Explore() {
           <select
             data-testid="explore-by-area-dropdown"
           >
-            {/* {fetchRecipes().meals.map(() => {})} */}
+            {origens.map((local, index) => (
+              <option data-testid={ `${local}-origem` } key={ index }>{ local }</option>
+            ))}
           </select>
         </Link>
       </div>
