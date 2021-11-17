@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CategoryFilter from '../../components/CategoryFilter';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -8,18 +8,32 @@ import RecipesContext from '../../context/RecipesContext';
 import { fetchByCategory, fetchCategories, fetchRecipes } from '../../services';
 
 function Drinks() {
+
+  let { search } = useLocation();
+
+  const query = new URLSearchParams(search);
+
   const {
     recipes,
     setRecipes,
     setCategories,
     selectedCategory,
+    fetchSearchBar,
   } = useContext(RecipesContext);
 
   useEffect(() => {
+    const ingredient = query.get('ingredient');
     const getRecipes = async () => {
       const MAX_VALUE = 12;
-      const { drinks } = await fetchRecipes('drinks');
-      setRecipes(drinks.slice(0, MAX_VALUE));
+      if (ingredient && ingredient.length > 0) {
+        const result = await fetchSearchBar('ingredient', ingredient, 'bebidas');
+        if (result.drinks.length > 1) {
+          setRecipes(result.drinks.slice(0, MAX_VALUE));
+        }
+      } else {
+        const { drinks } = await fetchRecipes('drinks');
+        setRecipes(drinks.slice(0, MAX_VALUE))
+      }
     };
 
     const getCategories = async () => {
@@ -47,14 +61,14 @@ function Drinks() {
     <>
       <Header title="Bebidas" buttonSearch />
       <CategoryFilter />
-      { recipes.map((recipe, index) => (
+      {recipes.map((recipe, index) => (
         <Link
-          key={ index }
-          to={ `/bebidas/${recipe.idDrink}` }
+          key={index}
+          to={`/bebidas/${recipe.idDrink}`}
         >
-          <RecipeCard page="drinks" index={ index } recipe={ recipe } />
+          <RecipeCard page="drinks" index={index} recipe={recipe} />
         </Link>
-      )) }
+      ))}
       <Footer />
     </>
   );

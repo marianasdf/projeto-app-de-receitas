@@ -33,8 +33,8 @@ function RecipeCard({ index, recipe, page }) {
 }
 
 RecipeCard.propTypes = {
-  recipe: PropTypes.objectOf(PropTypes.string),
-  index: PropTypes.number,
-}.isRequired;
+  recipe: PropTypes.objectOf(PropTypes.string).isRequired,
+  index: PropTypes.number.isRequired,
+}
 
 export default RecipeCard;

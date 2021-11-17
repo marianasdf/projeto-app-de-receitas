@@ -13,6 +13,7 @@ function RecipesProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+
   // fetch de acordo com a seleção do Radio e o digitado no input
   async function fetchSearchBar(inputRadio, inputText, path) {
     if (inputRadio === 'ingredient') {

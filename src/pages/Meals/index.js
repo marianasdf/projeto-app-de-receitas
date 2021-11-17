@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CategoryFilter from '../../components/CategoryFilter';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -8,18 +8,33 @@ import RecipesContext from '../../context/RecipesContext';
 import { fetchByCategory, fetchCategories, fetchRecipes } from '../../services';
 
 function Meals() {
+  let { search } = useLocation();
+
+  const query = new URLSearchParams(search);
+
   const {
     recipes,
     setRecipes,
     setCategories,
     selectedCategory,
+    fetchSearchBar
   } = useContext(RecipesContext);
 
   useEffect(() => {
+
     const getRecipes = async () => {
+      const ingredient = query.get('ingredient');
       const MAX_VALUE = 12;
-      const { meals } = await fetchRecipes('meals');
-      setRecipes(meals.slice(0, MAX_VALUE));
+      if (ingredient && ingredient.length > 0) {
+        const result = await fetchSearchBar('ingredient', ingredient, '/comidas');
+        console.log(result)
+        if (result.meals.length > 1) {
+          setRecipes(result.meals.slice(0, MAX_VALUE));
+        }
+      } else {
+        const { meals } = await fetchRecipes('meals');
+        setRecipes(meals.slice(0, MAX_VALUE))
+      };
     };
 
     const getCategories = async () => {
@@ -47,14 +62,14 @@ function Meals() {
     <>
       <Header title="Comidas" buttonSearch />
       <CategoryFilter />
-      { recipes.map((recipe, index) => (
+      {recipes.map((recipe, index) => (
         <Link
-          key={ index }
-          to={ `/comidas/${recipe.idMeal}` }
+          key={index}
+          to={`/comidas/${recipe.idMeal}`}
         >
-          <RecipeCard page="meals" index={ index } recipe={ recipe } />
+          <RecipeCard page="meals" index={index} recipe={recipe} />
         </Link>
-      )) }
+      ))}
       <Footer />
     </>
   );
