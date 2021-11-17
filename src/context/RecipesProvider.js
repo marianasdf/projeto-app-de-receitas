@@ -13,6 +13,10 @@ function RecipesProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+  // details states
+  const [mealsInProgress, setMealsInProgress] = useState([]);
+  const [drinksInProgress, setDrinksInProgress] = useState([]);
+
   const conxtValue = {
     email,
     setEmail,
@@ -26,6 +30,10 @@ function RecipesProvider({ children }) {
     setCategories,
     selectedCategory,
     setSelectedCategory,
+    mealsInProgress,
+    setMealsInProgress,
+    drinksInProgress,
+    setDrinksInProgress,
   };
 
   return (

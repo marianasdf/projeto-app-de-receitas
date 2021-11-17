@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import RecipesContext from '../../context/RecipesContext';
 import RecommendedRecipes from '../RecommendedRecipes/RecommendedRecipes';
 
+import './RecipeDetailsStyle.css';
+
 export default function MealRecipeDetails({ recipe }) {
+  const { mealsInProgress, setMealsInProgress } = useContext(RecipesContext);
+
+  const history = useHistory();
+  const { id } = useParams();
+
   function getIngredients() {
     const ingredients = Object.entries(recipe)
       .filter((par) => (par[0]
@@ -16,6 +25,13 @@ export default function MealRecipeDetails({ recipe }) {
         .includes('strMeasure') && par[1] !== '' && par[1] !== null))
       .map((item) => item[1]);
     return measuments;
+  }
+
+  const inProgress = mealsInProgress.some((meal) => meal === id);
+
+  function handleClick() {
+    if (!inProgress) setMealsInProgress([...mealsInProgress, id]);
+    history.push(`/comidas/${id}/in-progress`);
   }
 
   const { strYoutube, strInstructions, strCategory } = recipe;
@@ -70,13 +86,14 @@ export default function MealRecipeDetails({ recipe }) {
         src={ strYoutube }
         title="youtube-video"
       />
-      <RecommendedRecipes type="meals" />
+      <RecommendedRecipes type="drinks" />
       <button
         type="button"
         data-testid="start-recipe-btn"
+        className="recipe-btn"
+        onClick={ handleClick }
       >
-        Iniciar Receita
-
+        { inProgress === true ? 'Continuar Receita' : 'Iniciar Receita' }
       </button>
     </section>
   );

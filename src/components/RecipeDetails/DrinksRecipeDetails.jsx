@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import RecipesContext from '../../context/RecipesContext';
 import RecommendedRecipes from '../RecommendedRecipes/RecommendedRecipes';
 
+import './RecipeDetailsStyle.css';
+
 export default function DrinksRecipeDetails({ recipe }) {
+  const { drinksInProgress, setDrinksInProgress } = useContext(RecipesContext);
+
+  const history = useHistory();
+  const { id } = useParams();
+
   function getIngredients() {
     const ingredients = Object.entries(recipe)
       .filter((par) => (par[0]
@@ -16,6 +25,13 @@ export default function DrinksRecipeDetails({ recipe }) {
         .includes('strMeasure') && par[1] !== '' && par[1] !== null))
       .map((item) => item[1]);
     return measuments;
+  }
+
+  const inProgress = drinksInProgress.some((drink) => drink === id);
+
+  function handleClick() {
+    if (!inProgress) setDrinksInProgress([...drinksInProgress, id]);
+    history.push(`/bebidas/${id}/in-progress`);
   }
 
   const { strInstructions, strAlcoholic } = recipe;
@@ -63,13 +79,14 @@ export default function DrinksRecipeDetails({ recipe }) {
       <p data-testid="instructions">
         {strInstructions}
       </p>
-      <RecommendedRecipes type="drinks" />
+      <RecommendedRecipes type="meals" />
       <button
         type="button"
         data-testid="start-recipe-btn"
+        className="recipe-btn"
+        onClick={ handleClick }
       >
-        Iniciar Receita
-
+        { inProgress === true ? 'Continuar Receita' : 'Iniciar Receita' }
       </button>
     </section>
   );
