@@ -22,6 +22,7 @@ function ExploreLocalOrigin() {
   useEffect(() => {
     // da pra simplificar criando uma funcao de requisicao geral de api
     // const { meals } = await fetchApiGeral(filter ? api1 : api2${filterArea})
+
     async function getMealsByArea(filter) {
       if (filter === '') {
         const { meals } = await fetchRecipes('meals');
