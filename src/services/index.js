@@ -45,3 +45,11 @@ export const fetchArea = async () => {
 
   return response;
 };
+
+export const fetchMealsByArea = async (area) => {
+  const URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
+  const response = await fetch(`${URL}${area}`);
+  const data = response.json();
+
+  return data;
+};
