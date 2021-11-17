@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import {fetchDrinksIngredients} from '../../services/index'
+import { fetchDrinksIngredients } from '../../services/index';
 import IngredientsCard from '../../components/IngredientsCard';
 
 function ExploreDrinksByIngredient() {
   const [ingredientsList, setIngredientsList] = useState([]);
-  const MAX_VALUE = 12
+  const MAX_VALUE = 12;
   const URL = 'https://www.thecocktaildb.com/images/ingredients/';
   useEffect(() => {
     const showIngredients = async () => {
@@ -27,7 +27,7 @@ function ExploreDrinksByIngredient() {
             index={ index }
             image={ `${URL}${ingredient.strIngredient1}-Small.png` }
             ingredients={ ingredient.strIngredient1 }
-            foodOrDrink={'bebidas'}
+            foodOrDrink="bebidas"
           />
         ) : null
       ))}

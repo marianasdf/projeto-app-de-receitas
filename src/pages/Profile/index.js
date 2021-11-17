@@ -8,11 +8,11 @@ function Profile({ history }) {
 
   useEffect(() => setLocalEmail(JSON.parse(localStorage.getItem('user')).email), []);
   console.log(localEmail); */
-  const { email }  = JSON.parse(localStorage.getItem('user')) || [];
+  const { email } = JSON.parse(localStorage.getItem('user')) || [];
 
   return (
     <>
-      <Header title= "Perfil" />
+      <Header title="Perfil" />
       <h4 data-testid="profile-email">{email}</h4>
       <button
         type="button"

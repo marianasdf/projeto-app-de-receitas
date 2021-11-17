@@ -8,8 +8,7 @@ import RecipesContext from '../../context/RecipesContext';
 import { fetchByCategory, fetchCategories, fetchRecipes } from '../../services';
 
 function Drinks() {
-
-  let { search } = useLocation();
+  const { search } = useLocation();
 
   const query = new URLSearchParams(search);
 
@@ -32,7 +31,7 @@ function Drinks() {
         }
       } else {
         const { drinks } = await fetchRecipes('drinks');
-        setRecipes(drinks.slice(0, MAX_VALUE))
+        setRecipes(drinks.slice(0, MAX_VALUE));
       }
     };
 
@@ -63,10 +62,10 @@ function Drinks() {
       <CategoryFilter />
       {recipes.map((recipe, index) => (
         <Link
-          key={index}
-          to={`/bebidas/${recipe.idDrink}`}
+          key={ index }
+          to={ `/bebidas/${recipe.idDrink}` }
         >
-          <RecipeCard page="drinks" index={index} recipe={recipe} />
+          <RecipeCard page="drinks" index={ index } recipe={ recipe } />
         </Link>
       ))}
       <Footer />

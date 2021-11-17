@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { fetchMealIngredients } from '../../services/index'
+import { fetchMealIngredients } from '../../services/index';
 import IngredientsCard from '../../components/IngredientsCard';
 
 function ExploreFoodByIngredient() {
   const [ingredientsList, setIngredientsList] = useState([]);
-  const MAX_VALUE = 12
+  const MAX_VALUE = 12;
   const URL = 'https://www.themealdb.com/images/ingredients/';
   useEffect(() => {
     const showIngredients = async () => {
@@ -27,7 +27,7 @@ function ExploreFoodByIngredient() {
             index={ index }
             image={ `${URL}${ingredient.strIngredient}-Small.png` }
             ingredients={ ingredient.strIngredient }
-            foodOrDrink={'comidas'}
+            foodOrDrink="comidas"
           />
         ) : null
       ))}
