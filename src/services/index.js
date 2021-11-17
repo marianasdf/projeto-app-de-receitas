@@ -38,3 +38,10 @@ export const fetchDetails = async (type, id) => {
 
   return data;
 };
+
+export const fetchArea = async () => {
+  const requestApi = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+  const response = requestApi.json();
+
+  return response;
+};
