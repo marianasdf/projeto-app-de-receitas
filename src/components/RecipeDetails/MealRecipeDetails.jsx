@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import RecipesContext from '../../context/RecipesContext';
 import RecommendedRecipes from '../RecommendedRecipes/RecommendedRecipes';
-
 import './RecipeDetailsStyle.css';
 
 export default function MealRecipeDetails({ recipe }) {
@@ -36,19 +35,23 @@ export default function MealRecipeDetails({ recipe }) {
 
   const { strYoutube, strInstructions, strCategory } = recipe;
   return (
-    <section className="p-3">
-      <img
-        src={ recipe.strMealThumb }
-        alt={ recipe.strMeal }
-        className="w-25"
-        data-testid="recipe-photo"
-      />
-      <p
-        data-testid="recipe-title"
-      >
-        {recipe.strMeal}
-
-      </p>
+    <section className="DetailsPage">
+      <div className="ImgAndName">
+        <img
+          src={ recipe.strMealThumb }
+          alt={ recipe.strMeal }
+          className="img"
+          data-testid="recipe-photo"
+        />
+        <div className="recipeNameContainer">
+          <p
+            data-testid="recipe-title"
+            className="recipeTitle"
+          >
+            {recipe.strMeal}
+          </p>
+        </div>
+      </div>
       <button
         type="button"
         data-testid="share-btn"
@@ -67,16 +70,20 @@ export default function MealRecipeDetails({ recipe }) {
         {strCategory}
 
       </p>
-      <ul>
-        {getIngredients().map((ing, i) => (
-          <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>{ing}</li>
-        ))}
-      </ul>
-      <ul>
-        {getMeasurements().map((ing, i) => (
-          <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>{ing}</li>
-        ))}
-      </ul>
+      <section className="ingridients">
+        <ul>
+          <h6>Ingredientes</h6>
+          {getIngredients().map((ing, i) => (
+            <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>{ing}</li>
+          ))}
+        </ul>
+        <ul>
+          <h6>Quantidade</h6>
+          {getMeasurements().map((ing, i) => (
+            <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>{ing}</li>
+          ))}
+        </ul>
+      </section>
       <p data-testid="instructions">
         {strInstructions}
       </p>

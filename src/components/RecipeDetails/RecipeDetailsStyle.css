@@ -1,4 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+.DetailsPage {
+  padding: 10px;
+}
+
+.img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.ingridients {
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: center;
+  padding-left: none;
+}
+
+.ingridients ul {
+  padding-left: 0;
+}
+
+.ingridients li {
+  list-style-type: none;
+  margin-right: 5px;
+}
+
+.ImgAndName {
+  position: relative;
+}
+
 .recipe-btn {
   bottom: 0;
   position: fixed;
+}
+
+.recipeNameContainer {
+  backdrop-filter: blur(5px);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.233), rgba(255, 255, 255, 0));
+  height: 20%;
+  position: absolute;
+  text-align: center;
+  top: 80%;
+  width: 100%;
+}
+
+.recipeTitle {
+  color: white;
+  font-size: 50px;
+  font-weight: 500;
+  text-shadow: 1px 1px 20px rgba(0, 0, 0, 0.76);
 }

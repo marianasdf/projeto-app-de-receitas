@@ -23,7 +23,10 @@ export default function MealsRecommendations({ recommendations }) {
                   className="recipeIMG"
                 />
                 <div className="recipeNameContainer">
-                  <h3 className="recipeName" data-testid={ `${index}-recomendation-title` }>
+                  <h3
+                    className="recipeName"
+                    data-testid={ `${index}-recomendation-title` }
+                  >
                     {item.strMeal}
                   </h3>
                 </div>
