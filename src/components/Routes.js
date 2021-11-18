@@ -9,7 +9,7 @@ import ExploreDrinks from '../pages/ExploreDrinks';
 import ExploreDrinksByIngredient from '../pages/ExploreDrinksByIngredient';
 import ExploreFoodByIngredient from '../pages/ExploreFoodByIngredient';
 import ExploreLocalOrigin from '../pages/ExploreLocalOrigin';
-import ExploreMeals from '../pages/ExplorerMeals';
+import ExploreMeals from '../pages/ExploreMeals';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import Meals from '../pages/Meals';
 import MealsDetails from '../pages/MealsDetails';
@@ -26,18 +26,18 @@ class Routes extends React.Component {
         <Route exact path="/bebidas" component={ Drinks } />
         <Route
           exact
-          path="/comidas/{id-da-receita}"
+          path="/comidas/:id"
           component={ MealsDetails }
         />
-        <Route exact path="/bebidas/{id-da-receita}" component={ DrinksDetails } />
+        <Route exact path="/bebidas/:id" component={ DrinksDetails } />
         <Route
           exact
-          path="/comidas/{id-da-receita}/in-progress"
+          path="/comidas/:id/in-progress"
           component={ MealsInProgress }
         />
         <Route
           exact
-          path="/bebidas/{id-da-receita}/in-progress"
+          path="/bebidas/:id/in-progress"
           component={ DrinksInProgress }
         />
         <Route exact path="/explorar" component={ Explore } />
