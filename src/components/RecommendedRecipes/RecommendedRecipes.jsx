@@ -8,12 +8,11 @@ import DrinksRecommendations from './DrinksRecomendations';
 function RecommendedRecipes({ type }) {
   const [loading, setLoading] = useState(true);
   const id = useParams();
-  const [recommendations, setrecommendations] = useState(true);
+  const [recommendations, setrecommendations] = useState([]);
   useEffect(() => {
     async function getRecommendation() {
       const data = await fetchRecipes(type);
       const number = 6;
-      // console.log(data.drinks.slice(0, number))
       if (type === 'meals') setrecommendations(data.meals.slice(0, number));
       if (type === 'drinks') setrecommendations(data.drinks.slice(0, number));
       setLoading(false);

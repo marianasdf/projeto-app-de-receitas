@@ -38,6 +38,9 @@ function RecipesProvider({ children }) {
     }
   }
 
+  // detail page states
+  const [favorites, setFavorites] = useState([]);
+
   const conxtValue = {
     email,
     setEmail,
@@ -52,6 +55,8 @@ function RecipesProvider({ children }) {
     selectedCategory,
     setSelectedCategory,
     fetchSearchBar,
+    favorites,
+    setFavorites,
   };
 
   return (
