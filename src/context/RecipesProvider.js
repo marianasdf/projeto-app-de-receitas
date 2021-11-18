@@ -13,6 +13,9 @@ function RecipesProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+  // detail page states
+  const [favorites, setFavorites] = useState([]);
+
   const conxtValue = {
     email,
     setEmail,
@@ -26,6 +29,8 @@ function RecipesProvider({ children }) {
     setCategories,
     selectedCategory,
     setSelectedCategory,
+    favorites,
+    setFavorites,
   };
 
   return (
