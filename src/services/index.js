@@ -39,3 +39,42 @@ export const fetchSurpriseDrink = async () => {
   const { drinks } = await fetch(RANDOM_DRINK).then((r) => r.json());
   return drinks[0].idDrink;
 };
+export const fetchDetails = async (type, id) => {
+  const URL_MEALS = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  const URL_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+
+  const response = await fetch(type === 'meals'
+    ? `${URL_MEALS}${id}` : `${URL_DRINKS}${id}`);
+  const data = response.json();
+
+  return data;
+};
+
+export const fetchArea = async () => {
+  const requestApi = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+  const response = requestApi.json();
+
+  return response;
+};
+
+export const fetchMealsByArea = async (area) => {
+  const URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
+  const response = await fetch(`${URL}${area}`);
+  const data = response.json();
+
+  return data;
+};
+
+export async function fetchMealIngredients() {
+  const URL_MEAL_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(URL_MEAL_INGREDIENTS);
+  const result = await response.json();
+  return result;
+}
+
+export async function fetchDrinksIngredients() {
+  const URL_DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(URL_DRINKS_INGREDIENTS);
+  const result = await response.json();
+  return result;
+}

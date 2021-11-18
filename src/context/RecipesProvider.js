@@ -13,6 +13,11 @@ function RecipesProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+  // details states
+  const [mealsInProgress, setMealsInProgress] = useState([]);
+  const [drinksInProgress, setDrinksInProgress] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
   // fetch de acordo com a seleção do Radio e o digitado no input
   async function fetchSearchBar(inputRadio, inputText, path) {
     if (inputRadio === 'ingredient') {
@@ -51,7 +56,13 @@ function RecipesProvider({ children }) {
     setCategories,
     selectedCategory,
     setSelectedCategory,
+    mealsInProgress,
+    setMealsInProgress,
+    drinksInProgress,
+    setDrinksInProgress,
     fetchSearchBar,
+    favorites,
+    setFavorites,
   };
 
   return (

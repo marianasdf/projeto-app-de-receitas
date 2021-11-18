@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <footer
       data-testid="footer"
-      className="bg-light p-1 fixed-bottom d-flex justify-content-between"
+      className="bg-light p-1 fixed-bottom d-flex justify-content-between footer w-100"
     >
       <button
         name="drinks"
