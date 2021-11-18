@@ -3,8 +3,7 @@ export const fetchRecipes = async (type) => {
   const URL_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
   const response = await fetch(type === 'meals' ? URL_MEALS : URL_DRINKS);
-  const data = response.json();
-
+  const data = await response.json();
   return data;
 };
 
@@ -13,7 +12,7 @@ export const fetchCategories = async (type) => {
   const DRINKS_CATEGORY = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
   const response = await fetch(type === 'meals' ? MEALS_CATEGORY : DRINKS_CATEGORY);
-  const data = response.json();
+  const data = await response.json();
 
   return data;
 };
@@ -24,7 +23,7 @@ export const fetchByCategory = async (type, category) => {
 
   const response = await fetch(type === 'meals'
     ? `${MEALS_BY_CATEGORY}${category}` : `${DRINKS_BY_CATEGORY}${category}`);
-  const data = response.json();
+  const data = await response.json();
 
   return data;
 };
@@ -39,3 +38,32 @@ export const fetchDetails = async (type, id) => {
 
   return data;
 };
+
+export const fetchArea = async () => {
+  const requestApi = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+  const response = requestApi.json();
+
+  return response;
+};
+
+export const fetchMealsByArea = async (area) => {
+  const URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
+  const response = await fetch(`${URL}${area}`);
+  const data = response.json();
+
+  return data;
+};
+
+export async function fetchMealIngredients() {
+  const URL_MEAL_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(URL_MEAL_INGREDIENTS);
+  const result = await response.json();
+  return result;
+}
+
+export async function fetchDrinksIngredients() {
+  const URL_DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(URL_DRINKS_INGREDIENTS);
+  const result = await response.json();
+  return result;
+}
