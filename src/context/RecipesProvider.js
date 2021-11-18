@@ -16,6 +16,7 @@ function RecipesProvider({ children }) {
   // details states
   const [mealsInProgress, setMealsInProgress] = useState([]);
   const [drinksInProgress, setDrinksInProgress] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   // fetch de acordo com a seleção do Radio e o digitado no input
   async function fetchSearchBar(inputRadio, inputText, path) {
@@ -41,9 +42,6 @@ function RecipesProvider({ children }) {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
   }
-
-  // detail page states
-  const [favorites, setFavorites] = useState([]);
 
   const conxtValue = {
     email,

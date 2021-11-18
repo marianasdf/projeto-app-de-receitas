@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-// import { useParams } from 'react-router';
+import { useParams } from 'react-router';
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../../context/RecipesContext';
 import RecommendedRecipes from '../RecommendedRecipes/RecommendedRecipes';
 import shareIcon from '../../images/shareIcon.svg';
@@ -24,7 +24,6 @@ export default function DrinksRecipeDetails({ recipe }) {
       .map((item) => item[1]);
     return ingredients;
   }
-
   function getMeasurements() {
     const measuments = Object.entries(recipe)
       .filter((par) => (par[0]
