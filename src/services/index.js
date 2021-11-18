@@ -28,6 +28,17 @@ export const fetchByCategory = async (type, category) => {
   return data;
 };
 
+export const fetchSurpriseMeal = async () => {
+  const RANDOM_MEAL = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  const { meals } = await fetch(RANDOM_MEAL).then((r) => r.json());
+  return meals[0].idMeal;
+};
+
+export const fetchSurpriseDrink = async () => {
+  const RANDOM_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+  const { drinks } = await fetch(RANDOM_DRINK).then((r) => r.json());
+  return drinks[0].idDrink;
+};
 export const fetchDetails = async (type, id) => {
   const URL_MEALS = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
   const URL_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
