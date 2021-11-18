@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import RecipesContext from '../../context/RecipesContext';
 import RecommendedRecipes from '../RecommendedRecipes/RecommendedRecipes';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -10,6 +11,11 @@ import './RecipeDetailsStyle.css';
 export default function MealRecipeDetails({ recipe }) {
   const [shared, setShared] = useState(false);
   const [favorited, setFavorited] = useState(false);
+  const { mealsInProgress, setMealsInProgress } = useContext(RecipesContext);
+
+  const history = useHistory();
+  const { id } = useParams();
+
   function getIngredients() {
     const ingredients = Object.entries(recipe)
       .filter((par) => (par[0]
@@ -25,7 +31,6 @@ export default function MealRecipeDetails({ recipe }) {
     return measuments;
   }
 
-  const { id } = useParams('');
   useEffect(() => {
     console.log(JSON.parse(localStorage.getItem('favoriteRecipes')));
     if (localStorage.getItem('favoriteRecipes')
@@ -62,6 +67,13 @@ export default function MealRecipeDetails({ recipe }) {
       favorites.push(item);
       localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
     }
+  }
+
+  const inProgress = mealsInProgress.some((meal) => meal === id);
+
+  function handleClick() {
+    if (!inProgress) setMealsInProgress([...mealsInProgress, id]);
+    history.push(`/comidas/${id}/in-progress`);
   }
 
   const { strYoutube, strInstructions, strCategory } = recipe;
@@ -138,8 +150,10 @@ export default function MealRecipeDetails({ recipe }) {
       <button
         type="button"
         data-testid="start-recipe-btn"
+        className="recipe-btn"
+        onClick={ handleClick }
       >
-        Iniciar Receita
+        { inProgress === true ? 'Continuar Receita' : 'Iniciar Receita' }
       </button>
     </section>
   );
