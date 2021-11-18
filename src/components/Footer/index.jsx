@@ -8,7 +8,7 @@ function Footer() {
   return (
     <footer
       data-testid="footer"
-      className="bg-light p-1 fixed-bottom d-flex justify-content-between footer"
+      className="bg-light p-1 fixed-bottom d-flex justify-content-between footer w-100"
     >
       <Link
         to="/bebidas"

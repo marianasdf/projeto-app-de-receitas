@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { fetchDetails } from '../../services';
-import RecipeDetails from '../../components/RecipeDetails/RecipeDetails';
+import MealRecipeDetails from '../../components/RecipeDetails/MealRecipeDetails';
 
 function MealsDetails() {
   const [recipe, setRecipe] = useState();
@@ -18,7 +18,7 @@ function MealsDetails() {
 
   return (
     <div className="d-flex justify-content-center">
-      {loading ? 'Carregando' : <RecipeDetails recipe={ recipe } />}
+      {loading ? 'Carregando' : <MealRecipeDetails recipe={ recipe } />}
     </div>
   );
 }
