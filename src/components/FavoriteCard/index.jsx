@@ -8,7 +8,7 @@ function FavoriteCard() {
     return favoritesRecipes;
   }
 
-/*   function handleClick(type) {
+  /*   function handleClick(type) {
     if (type === 'tudo') {
       const array = getArrayFromLocal();
       return array;
