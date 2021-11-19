@@ -18,13 +18,13 @@ function ExploreMeals() {
 
   return (
     <div>
-      <Header title="Explorar Comidas" />
+      <Header title="Explorar Bebidas" />
       <div>
         <button
           type="button"
           data-testid="explore-by-ingredient"
           value="/explorar/bebidas/ingredientes"
-          onClick={ (e) => handleClick(e) }
+          onClick={ handleClick }
         >
           Por Ingredientes
         </button>
@@ -32,7 +32,7 @@ function ExploreMeals() {
           type="button"
           data-testid="explore-surprise"
           value={ `/bebidas/${idDrink}` }
-          onClick={ (e) => handleClick(e) }
+          onClick={ handleClick }
         >
           Me Surpreenda!
         </button>

@@ -24,7 +24,7 @@ function ExploreMeals() {
           type="button"
           data-testid="explore-by-ingredient"
           value="/explorar/comidas/ingredientes"
-          onClick={ (e) => handleClick(e) }
+          onClick={ handleClick }
         >
           Por Ingredientes
         </button>
@@ -32,7 +32,7 @@ function ExploreMeals() {
           type="button"
           data-testid="explore-by-area"
           value="/explorar/comidas/area"
-          onClick={ (e) => handleClick(e) }
+          onClick={ handleClick }
         >
           Por Local de Origem
         </button>
@@ -40,7 +40,7 @@ function ExploreMeals() {
           type="button"
           data-testid="explore-surprise"
           value={ `/comidas/${idMeal}` }
-          onClick={ (e) => handleClick(e) }
+          onClick={ handleClick }
         >
           Me Surpreenda!
         </button>
