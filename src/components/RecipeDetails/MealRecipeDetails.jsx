@@ -53,8 +53,8 @@ export default function MealRecipeDetails({ recipe }) {
       setFavorited(false);
       localStorage.removeItem('favoriteRecipes');
     } else {
-      setFavorited(true);
       const favorites = [];
+      setFavorited(true);
       const item = {
         id,
         type: 'comida',
