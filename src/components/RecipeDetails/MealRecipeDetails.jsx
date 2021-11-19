@@ -48,13 +48,15 @@ export default function MealRecipeDetails({ recipe }) {
   }
 
   function addFavorite() {
+    let favorites = [];
+    if (JSON.parse(localStorage.getItem('favoriteRecipes'))) {
+      favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    }
     if (favorited) {
-      console.log(localStorage.getItem(JSON.stringify('favoriteRecipes')));
       setFavorited(false);
       localStorage.removeItem('favoriteRecipes');
     } else {
       setFavorited(true);
-      const favorites = [];
       const item = {
         id,
         type: 'comida',
