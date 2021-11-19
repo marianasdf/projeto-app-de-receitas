@@ -1,26 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shareButton from '../../images/shareIcon.svg';
-import favoriteButton from '../../images/whiteHeartIcon.svg';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
-function DrinksFavoriteCard({ name, image, alcoholicOrNot }) {
+function DrinksFavoriteCard({ name, image, alcoholicOrNot, index }) {
+  const [favorited, setFavorited] = useState();
+  function addFavorite() {
+    if (favorited) {
+      setFavorited(false);
+      localStorage.removeItem('favoriteRecipes');
+    } else {
+      setFavorited(true);
+    }
+  }
   return (
     <section>
-      <img src={ image } alt={ `imagem do prato ${name}` } />
-      <h3>
+      <img
+        src={ image }
+        alt={ `imagem do prato ${name}` }
+        data-testid={ `${index}-horizontal-image` }
+      />
+      <h3 data-testid={ `${index}-horizontal-name` }>
         {name}
       </h3>
-      <p>
+      <p data-testid={ `${index}-horizontal-top-text` }>
         Tipo de bebida:
         {alcoholicOrNot}
       </p>
       <button type="button">
-        <img scr={ shareButton } alt="Imagem de compartilhar" />
-      </button>
-      <button type="button">
         <img
-          src={ favoriteButton }
+          src={ shareButton }
+          alt="Imagem de compartilhar"
+          data-testid={ `${index}-horizontal-share-btn` }
+        />
+      </button>
+      <button type="button" onClick={ addFavorite }>
+        <img
+          src={ favorited ? whiteHeartIcon : blackHeartIcon }
           alt="Imagem de coração para favoritar e desfavoritar"
+          data-testid={ `${index}-horizontal-favorite-btn` }
         />
       </button>
     </section>
@@ -31,6 +50,7 @@ DrinksFavoriteCard.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   alcoholicOrNot: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default DrinksFavoriteCard;

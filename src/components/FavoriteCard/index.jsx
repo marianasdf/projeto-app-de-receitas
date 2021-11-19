@@ -8,7 +8,7 @@ function FavoriteCard() {
     return favoritesRecipes;
   }
 
-  function handleClick(type) {
+/*   function handleClick(type) {
     if (type === 'tudo') {
       const array = getArrayFromLocal();
       return array;
@@ -16,22 +16,30 @@ function FavoriteCard() {
     const completedArray = getArrayFromLocal();
     const filteredArray = completedArray.filter((item) => item.type === type);
     return filteredArray;
-  }
+  } */
 
   return (
     <div>
-      <button type="button" onClick={ handleClick('comida') }>Food</button>
-      <button type="button" onClick={ handleClick('bebida') }>Drinks</button>
-      <button type="button" onClick={ handleClick('tudo') }>All</button>
+      <button type="button" data-testid="filter-by-food-btn">Food</button>
+      <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+      <button type="button" data-testid="filter-by-all-btn">All</button>
       { getArrayFromLocal()
-        .map(({ name, type, category, area, image, id, alcoholicOrNot }) => (
+        .map(({ name, type, category, area, image, id, alcoholicOrNot }, index) => (
           <section key={ id }>
             { type === 'comida' ? <MealsFavoriteCard
               name={ name }
               category={ category }
               image={ image }
               area={ area }
-            /> : <DrinksFavoriteCard alcoholicOrNot={ alcoholicOrNot } name={ name } image={ image } />}
+              index={ index }
+            />
+              : (
+                <DrinksFavoriteCard
+                  alcoholicOrNot={ alcoholicOrNot }
+                  name={ name }
+                  image={ image }
+                  index={ index }
+                />)}
           </section>
         )) }
     </div>
