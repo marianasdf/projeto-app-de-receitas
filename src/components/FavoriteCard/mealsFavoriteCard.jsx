@@ -5,7 +5,7 @@ import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function MealsFavoriteCard({ name, category, image, area, index }) {
-  const [favorited, setFavorited] = useState();
+  const [favorited, setFavorited] = useState(false);
   function addFavorite() {
     if (favorited) {
       setFavorited(false);
@@ -29,10 +29,6 @@ function MealsFavoriteCard({ name, category, image, area, index }) {
         Categoria:
         {`${area} - ${category}`}
       </p>
-      {/* <p>
-        Área:
-        {area}
-      </p> */}
       <button type="button">
         <img
           src={ shareButton }
@@ -40,7 +36,11 @@ function MealsFavoriteCard({ name, category, image, area, index }) {
           data-testid={ `${index}-horizontal-share-btn` }
         />
       </button>
-      <button type="button" onClick={ addFavorite }>
+      <button
+        type="button"
+        onClick={ addFavorite }
+        name={ name }
+      >
         <img
           src={ favorited ? whiteHeartIcon : blackHeartIcon }
           alt="Imagem de coração para favoritar e desfavoritar"
