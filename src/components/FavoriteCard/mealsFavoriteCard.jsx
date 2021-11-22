@@ -4,8 +4,18 @@ import shareButton from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
-function MealsFavoriteCard({ name, category, image, area, index }) {
+function MealsFavoriteCard({ name, category, image, area, index, id }) {
   const [favorited, setFavorited] = useState(true);
+  const [copy, setCopy] = useState(false);
+
+  function copyLink({ target }) {
+    // forma de pegar a URL retirada de https://pt.stackoverflow.com/questions/76394/como-fa%C3%A7o-para-pegar-url-atual-em-javascript
+    const urlPage = `http://localhost:3000/comidas/${target.name}`;
+    navigator.clipboard.writeText(urlPage);
+    setCopy(true);
+    console.log(urlPage);
+  }
+
   function addFavorite({ target }) {
     if (favorited) {
       console.log(target.name);
@@ -33,13 +43,18 @@ function MealsFavoriteCard({ name, category, image, area, index }) {
         Categoria:
         {`${area} - ${category}`}
       </p>
-      <button type="button">
+      <button
+        type="button"
+        onClick={ (event) => copyLink(event) }
+      >
         <img
+          name={ id }
           src={ shareButton }
           alt="Imagem de compartilhar"
           data-testid={ `${index}-horizontal-share-btn` }
         />
       </button>
+      { copy ? <p>Link copiado!</p> : <p>.</p> }
       <button
         type="button"
         onClick={ (event) => addFavorite(event) }
@@ -61,6 +76,7 @@ MealsFavoriteCard.propTypes = {
   category: PropTypes.string.isRequired,
   area: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default MealsFavoriteCard;

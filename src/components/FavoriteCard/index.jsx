@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import DrinksFavoriteCard from './drinksFavoriteCard';
 import MealsFavoriteCard from './mealsFavoriteCard';
+import DrinksFavoriteCard from './drinksFavoriteCard';
 
 function FavoriteCard() {
   const [typeOfFilter, setType] = useState('tudo');
@@ -44,6 +44,7 @@ function FavoriteCard() {
           .map(({ name, type, category, area, image, id, alcoholicOrNot }, index) => (
             <section key={ id } className="teste">
               { type === 'comida' ? <MealsFavoriteCard
+                id={ id }
                 name={ name }
                 category={ category }
                 image={ image }
@@ -62,6 +63,7 @@ function FavoriteCard() {
           .map(({ name, type, category, area, image, id, alcoholicOrNot }, index) => (
             <section key={ id }>
               { type === 'comida' ? <MealsFavoriteCard
+                id={ id }
                 name={ name }
                 category={ category }
                 image={ image }
@@ -77,25 +79,6 @@ function FavoriteCard() {
                   />)}
             </section>
           ))}
-      {/*  { getArrayFromLocal().filter((tipo) => tipo === typeOfFilter)
-          .map(({ name, type, category, area, image, id, alcoholicOrNot }, index) => (
-            <section key={ id }>
-              { type === 'comida' ? <MealsFavoriteCard
-                name={ name }
-                category={ category }
-                image={ image }
-                area={ area }
-                index={ index }
-              />
-                : (
-                  <DrinksFavoriteCard
-                    alcoholicOrNot={ alcoholicOrNot }
-                    name={ name }
-                    image={ image }
-                    index={ index }
-                  />)}
-            </section>
-          )) } */}
     </div>
   );
 }
