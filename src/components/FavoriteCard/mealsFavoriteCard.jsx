@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareButton from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -9,9 +10,8 @@ function MealsFavoriteCard({ name, category, image, area, index, id }) {
   const [copy, setCopy] = useState(false);
 
   function copyLink({ target }) {
-    // forma de pegar a URL retirada de https://pt.stackoverflow.com/questions/76394/como-fa%C3%A7o-para-pegar-url-atual-em-javascript
     const urlPage = `http://localhost:3000/comidas/${target.name}`;
-    navigator.clipboard.writeText(urlPage);
+    window.navigator.clipboard.writeText(urlPage);
     setCopy(true);
     console.log(urlPage);
   }
@@ -31,14 +31,18 @@ function MealsFavoriteCard({ name, category, image, area, index, id }) {
 
   return (
     <section>
-      <img
-        src={ image }
-        alt={ `imagem do prato ${name}` }
-        data-testid={ `${index}-horizontal-image` }
-      />
-      <h3 data-testid={ `${index}-horizontal-name` }>
-        {name}
-      </h3>
+      <Link to={ `/comidas/${id}` }>
+        <img
+          src={ image }
+          alt={ `imagem do prato ${name}` }
+          data-testid={ `${index}-horizontal-image` }
+        />
+      </Link>
+      <Link to={ `/comidas/${id}` }>
+        <h3 data-testid={ `${index}-horizontal-name` }>
+          {name}
+        </h3>
+      </Link>
       <p data-testid={ `${index}-horizontal-top-text` }>
         Categoria:
         {`${area} - ${category}`}

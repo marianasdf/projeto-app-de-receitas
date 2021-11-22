@@ -53,6 +53,7 @@ function FavoriteCard() {
               />
                 : (
                   <DrinksFavoriteCard
+                    id={ id }
                     alcoholicOrNot={ alcoholicOrNot }
                     name={ name }
                     image={ image }
@@ -72,6 +73,7 @@ function FavoriteCard() {
               />
                 : (
                   <DrinksFavoriteCard
+                    id={ id }
                     alcoholicOrNot={ alcoholicOrNot }
                     name={ name }
                     image={ image }
