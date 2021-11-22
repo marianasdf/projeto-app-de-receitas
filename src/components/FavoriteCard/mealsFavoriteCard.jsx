@@ -5,11 +5,15 @@ import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function MealsFavoriteCard({ name, category, image, area, index }) {
-  const [favorited, setFavorited] = useState(false);
-  function addFavorite() {
+  const [favorited, setFavorited] = useState(true);
+  function addFavorite({ target }) {
     if (favorited) {
+      console.log(target.name);
+      const arrayOfRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
       setFavorited(false);
+      const newArray = arrayOfRecipes.filter((recipe) => recipe.name !== target.name);
       localStorage.removeItem('favoriteRecipes');
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newArray));
     } else {
       setFavorited(true);
     }
@@ -38,13 +42,13 @@ function MealsFavoriteCard({ name, category, image, area, index }) {
       </button>
       <button
         type="button"
-        onClick={ addFavorite }
-        name={ name }
+        onClick={ (event) => addFavorite(event) }
       >
         <img
-          src={ favorited ? whiteHeartIcon : blackHeartIcon }
+          src={ favorited ? blackHeartIcon : whiteHeartIcon }
           alt="Imagem de coração para favoritar e desfavoritar"
           data-testid={ `${index}-horizontal-favorite-btn` }
+          name={ name }
         />
       </button>
     </section>
